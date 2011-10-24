@@ -4,7 +4,7 @@ var bulmaRhs = {
     {from:   1, to:   9, label: "N° FINESS"},
     {from:  10, to:  12, label: "Version RHS"},
     {from:  13, to:  19, label: "Numéro de séjour SSR", significant: true},
-    {from:  20, to:  39, label: "Numéro administratif de séjour"},
+    {from:  20, to:  39, label: "Numéro administratif de séjour", significant: true},
     {from:  40, to:  51, label: "Zone réservée"},
     {from:  52, to:  59, label: "Date de début de séjour", type: 'date', significant: true},
     {from:  60, to:  67, label: "Date de fin de séjour", type: 'date', significant: true},
