@@ -134,12 +134,12 @@ bulmaRhs.rhsHtml = function(content)
 bulmaRhs.drawHmltElement = function(key, value, level)
 {
   var description = (bulmaRhs.hl7Descriptions[key] !== undefined) ? bulmaRhs.hl7Descriptions[key] : '';
-  var class = this.htmlClassByLevel[level];
-  class += (this.isSignificantField(key)) ? " significant" : "";
-  class += (value == '') ? " empty" : "";
+  var className = this.htmlClassByLevel[level];
+  className += (this.isSignificantField(key)) ? " significant" : "";
+  className += (value == '') ? " empty" : "";
   inlineStyle = (value == '') ? 'style="display: none;"' : '';
   
-  return '<tr ' + inlineStyle + '  class="' + class + '"><td class="key">' + key + '</td><td class="value">' + value + '</td><td class="desc">' + description + '</td></tr>';
+  return '<tr ' + inlineStyle + '  class="' + className + '"><td class="key">' + key + '</td><td class="value">' + value + '</td><td class="desc">' + description + '</td></tr>';
 }
 
 /**
