@@ -36,7 +36,45 @@ var bulmaRhs = {
     {from: 161, to: 162, label: "Nombre de diagnostic associés", significant: true, type: 'entier'},
     {from: 163, to: 165, label: "Nombre d'actes CdaRR", significant: true, type: 'entier'},
     {from: 166, to: 167, label: "Nombre d'actes CCAM", significant: true, type: 'entier'}
-  ]
+  ],
+  FORMAT_RHS_M07: 'RHSM07',
+  RHS_M07_DESCRIPTORS: [
+    {from:   1, to:   9, label: "N° FINESS"},
+    {from:  10, to:  12, label: "Version RHS"},
+    {from:  13, to:  19, label: "Numéro de séjour SSR", significant: true},
+    {from:  20, to:  39, label: "Numéro administratif de séjour", significant: true},
+    {from:  40, to:  51, label: "Zone réservée"},
+    {from:  52, to:  59, label: "Date de début de séjour", type: 'date', significant: true},
+    {from:  60, to:  67, label: "Date de fin de séjour", type: 'date', significant: true},
+    {from:  68, to:  75, label: "Date de naissance", type: 'date'},
+    {from:  76, to:  76, label: "Sexe", type: 'sexe'},
+    {from:  77, to:  81, label: "Code postal"},
+    {from:  82, to:  82, label: "Type d'hospitalisation"},
+    {from:  83, to:  90, label: "Date d'entrée dans l'UM", type: 'date', significant: true},
+    {from:  91, to:  91, label: "Mode entrée dans l'UM"},
+    {from:  92, to:  92, label: "Provenance"},
+    {from:  93, to: 100, label: "Date de sortie dans l'UM", type: 'date', significant: true},
+    {from: 101, to: 101, label: "Mode de sortie dans l'UM"},
+    {from: 102, to: 102, label: "Destination"},
+    {from: 103, to: 108, label: "Numéro de semaine", type: 'semaine', significant: true},
+    {from: 109, to: 113, label: "Journées hors w-e", significant: true},
+    {from: 114, to: 115, label: "Journées w-e", significant: true},
+    {from: 116, to: 119, label: "Numéro d'UM", significant: true},
+    {from: 120, to: 122, label: "Type d'autorisation UM"},
+    {from: 123, to: 130, label: "Date d'intervention chirurgicale"},
+    {from: 131, to: 138, label: "Finalité principale", significant: true},
+    {from: 139, to: 146, label: "Manifestation Morbide principale", significant: true},
+    {from: 147, to: 154, label: "Affection Ethiologique", significant: true},
+    {from: 155, to: 155, label: "Dépendance Habillage"},
+    {from: 156, to: 156, label: "Dépendance Déplacement"},
+    {from: 157, to: 157, label: "Dépendance Alimentation"},
+    {from: 158, to: 158, label: "Dépendance Continence"},
+    {from: 159, to: 159, label: "Dépendance Comportement"},
+    {from: 160, to: 160, label: "Dépendance Relation"},
+    {from: 161, to: 162, label: "Nombre de diagnostic associés", significant: true, type: 'entier'},
+    {from: 163, to: 165, label: "Nombre d'actes CdaRR/CSARR", significant: true, type: 'entier'},
+    {from: 166, to: 167, label: "Nombre d'actes CCAM", significant: true, type: 'entier'}
+  ],
 };
 
 /**
@@ -59,6 +97,10 @@ bulmaRhs.getFileFormat = function(content)
   {
     return this.FORMAT_RHS_M06;
   }
+  if(content.match(/^.{9}M07/) !== null)
+  {
+    return this.FORMAT_RHS_M07;
+  }
 
   return null;
 }
@@ -74,6 +116,7 @@ bulmaRhs.computeFile = function(content)
   switch(this.getFileFormat(content))
   {
     case this.FORMAT_RHS_M06:
+    case this.FORMAT_RHS_M07:
      fileAsHtml = this.rhsHtml(content);
      break;
   }
