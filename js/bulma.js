@@ -258,7 +258,11 @@ bulmaRhs.format = function(value, descriptor)
       }
       break;
     case 'entier':
-      return parseInt(value);
+      if (!isNaN(intValue = parseInt(value)))
+      {
+        return intValue;
+      }
+      return value;
       break;
     case 'semaine':
       var result;
